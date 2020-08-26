@@ -1,11 +1,17 @@
 package com.revature.dao;
 
-import java.util.List;
+import java.util.Set;
 
-import com.revature.model.User;
-
-public interface CrudRepository {
+public interface CrudRepository<T> {
 	
-	public List<User> findAll();
+	public Set<T> findAll();
+	
+	public T save();
+	
+	public T findById(int i);
+	
+	public boolean update(T t);
+	
+	public boolean deleteById(int i);
 
 }
