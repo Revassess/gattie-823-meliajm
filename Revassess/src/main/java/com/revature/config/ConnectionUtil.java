@@ -1,6 +1,9 @@
 package com.revature.config;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 
 /**
  * 
@@ -34,14 +37,44 @@ public class ConnectionUtil {
 	public static final String TIER_3_SEQUENCE_NAME = "some_seq";
 
 	// implement this method to connect to the db and return the connection object
-	public Connection connect(){
-		return null;
+	public static Connection connect() throws SQLException {
+		
+		try {
+			Class.forName("org.postgresql.Driver");
+		} catch(ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		
+		String url = "jdbc:postgresql://javafs200803.c3dwgeuwlgd5.us-east-2.rds.amazonaws.com:5432/postgres";
+		String username = "postgres";
+		String password = "password";
+		
+		return DriverManager.getConnection(url, username, password);
+		
 	}
+	
+	public static void main(String[] args) {
+		// try with resources
+		try(Connection conn = ConnectionUtil.connect()) {
+			System.out.println("connection successful");
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 
 
 	//implement this method with a callable statement that calls the absolute value sql function
 	public long callAbsoluteValueFunction(long value){
-		return value;
+		if (value == 0) {
+			return 0;
+		}
+		else if (value>0) {
+			
+			return value;
+		} else {
+			return -1*value;
+		}
 	}
 	
 
