@@ -29,8 +29,9 @@ public class ConnectionUtil {
 //	 NOCACHE
 //	 NOCYCLE; CREATE SEQUENCE a START WITH 6 INCREMENT BY 3
 	// name of the created sequence in tier 3     
-//	public static final String TIER_3_SEQUENCE_NAME = "";
-	public static final String TIER_3_SEQUENCE_NAME = "CREATE SEQUENCE START WITH 6 INCREMENT BY 3";
+//	public static final String TIER_3_SEQUENCE_NAME = "";CREATE SEQUENCE some_seq START WITH 6 INCREMENT BY 3
+	
+	public static final String TIER_3_SEQUENCE_NAME = "some_seq";
 
 	// implement this method to connect to the db and return the connection object
 	public Connection connect(){
